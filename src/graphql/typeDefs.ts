@@ -1,14 +1,16 @@
+import { addUserQueries, usersTypes, usersTypesQueries } from "../auth/typeDef/usersTypes";
+
 const typeDefs = `#graphql   
 
-  ${"userTypes"}
-  ${"inventoryTypes"}
-
+  ${usersTypes}
 
   type Query{
-    ${"userTypesQueries"}
-  ${"inventoryTypesQueries"}
-} 
-  
-   `;
+    ${usersTypesQueries}
+  }
+
+  type Mutation {
+    ${addUserQueries}
+  }
+`;
 
 export default typeDefs;

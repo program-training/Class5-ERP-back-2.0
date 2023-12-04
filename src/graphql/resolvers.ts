@@ -1,12 +1,14 @@
-import {userTypes} from ''
-import {inventoryTypes} from ''
+import { userAdd, usersQueries } from "../auth/queries/usersQueries";
+
 
 const resolvers = {
-    Query: {
-        
-      ...userTypes,
-      ...inventoryTypes
+  Query: {
+      ...usersQueries,
+  },
 
+  Mutation:{
+    ...userAdd,
   }
+}
   
-  export default resolvers;
+export default resolvers;
