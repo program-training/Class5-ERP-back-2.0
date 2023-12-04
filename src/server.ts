@@ -1,25 +1,18 @@
-import express from "express";
-import "dotenv/config";
+import { startStandaloneServer } from "@apollo/server/standalone";
 import connectionToMongoDb from "./dbAccess/mongoDBConnection";
 import { connectionToPostgres } from "./dbAccess/postgresConnection";
-import router from "./router/router";
-import morganLogger from "./logger/morgan";
-import cors from "./cors/cors";
 import initialData from "./utils/initialData";
+import server from "./graphql/apolloServer";
 import chalk from "chalk";
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(morganLogger);
-app.use(cors);
-app.use(express.json());
-app.use(express.text());
-app.use("/", router);
+const PORT = 4000;
 
 if (!PORT) throw new Error("invalid port");
-app.listen(PORT, () => {
-  console.log(chalk.bgCyan(`listening on port ${PORT}`));
+
+startStandaloneServer(server, {
+  listen: { port: PORT },
+}).then(({ url }) => {
+  console.log(chalk.blueBright(`server run on: ${url}`));
   connectionToMongoDb()
     .then((message) => console.log(chalk.blue(message)))
     .catch((error) => console.log(chalk.redBright(error.message)));
