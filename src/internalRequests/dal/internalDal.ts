@@ -1,4 +1,3 @@
-import { b } from "vitest/dist/reporters-5f784f42";
 import { client } from "../../dbAccess/postgresConnection";
 import { insertQGenerator, updateQGenerator } from "../helpers/queryGenerators";
 import { productEntriesType } from "../types/productEntriesType";
