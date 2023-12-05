@@ -5,6 +5,11 @@ export const usersTypes = `
         password: String!
     }
 
+    type UserResponse {
+        email: String!
+        password: String!
+    }
+
     type ResData {
         token: String!
         user: User!
@@ -15,7 +20,7 @@ export const usersTypes = `
         resData: ResData!   
     }
 
-    input LoginInput {
+    input UserInput {
         email: String!
         password: String!
     }
@@ -27,6 +32,6 @@ export const usersTypesQueries = `
 `
 
 export const usersTypesMutation = `
-    addUser(email: String!, password: String!):User!
-    loginUser(input: LoginInput!):LoginPayload
+    registerUser(input: UserInput!):UserResponse!
+    loginUser(input: UserInput!):LoginPayload
 `
