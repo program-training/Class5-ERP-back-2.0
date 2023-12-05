@@ -4,6 +4,7 @@ import { GraphQLRequestContext, BaseContext } from "@apollo/server";
 const apolloLogger = {
   async requestDidStart({ request }: GraphQLRequestContext<BaseContext>) {
     request.http &&
+      request.operationName !== "IntrospectionQuery" &&
       console.log(
         chalk.cyanBright(
           `[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] ${
