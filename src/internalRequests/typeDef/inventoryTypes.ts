@@ -17,5 +17,5 @@ export const inventoryTypes = `
 `;
 
 export const inventoryTypesQuery = `
-    getProducts:[Product]
+    getProducts:[Product!]!
 `
