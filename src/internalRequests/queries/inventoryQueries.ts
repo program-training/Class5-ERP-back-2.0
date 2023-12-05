@@ -1,5 +1,6 @@
-import { getProducts } from "../resolvers/inventoryResolvers";
+import { getProduct, getProducts } from "../resolvers/inventoryResolvers";
 
 export const inventoryQueries = {
-    getProducts,
-}
+  getProducts,
+  getProduct,
+};

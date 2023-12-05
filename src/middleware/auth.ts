@@ -9,6 +9,7 @@ export const requireAuth = ({
   req,
 }: StandaloneServerContextFunctionArgument): Promise<BaseContext> => {
   if (
+    (req as Request).body.operationName === "GetUsers" ||
     (req as Request).body.operationName === "LoginUser" ||
     (req as Request).body.operationName === "RegisterUser" ||
     (req as Request).body.operationName === "IntrospectionQuery" 

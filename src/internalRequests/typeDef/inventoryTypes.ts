@@ -2,7 +2,7 @@ export const inventoryTypes = `
     type Product {
         id: ID
         name: String
-        salePrice: Int
+        salePrice: Float
         quantity : Int
         description : String
         category: String
@@ -10,7 +10,7 @@ export const inventoryTypes = `
         imageUrl: String
         imageAlt: String
         isForSale: Boolean
-        costPrice: Int
+        costPrice: Float
         supplier: String
         createdBy: String
     }
@@ -18,4 +18,5 @@ export const inventoryTypes = `
 
 export const inventoryTypesQuery = `
     getProducts:[Product!]!
+    getProduct(id: ID!):Product!
 `
