@@ -1,16 +1,19 @@
 import { usersMutation, usersQueries } from "../auth/queries/usersQueries";
-import { inventoryQueries } from "../internalRequests/queries/inventoryQueries";
-
+import {
+  inventoryMutation,
+  inventoryQueries,
+} from "../internalRequests/queries/inventoryQueries";
 
 const resolvers = {
   Query: {
-      ...usersQueries,
-      ...inventoryQueries,
+    ...usersQueries,
+    ...inventoryQueries,
   },
 
-  Mutation:{
+  Mutation: {
     ...usersMutation,
-  }
-}
-  
+    ...inventoryMutation,
+  },
+};
+
 export default resolvers;

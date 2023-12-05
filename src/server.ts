@@ -12,7 +12,7 @@ if (!PORT) throw new Error("invalid port");
 
 startStandaloneServer(server, {
   listen: { port: PORT },
-  context: requireAuth
+  // context: requireAuth
 }).then(({ url }) => {
   console.log(chalk.blueBright(`server run on: ${url}`));
   connectionToMongoDb()

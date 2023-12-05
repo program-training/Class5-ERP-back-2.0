@@ -1,5 +1,13 @@
-import { usersTypesMutation, usersTypes, usersTypesQueries } from "../auth/typeDef/usersTypes";
-import { inventoryTypes, inventoryTypesQuery } from "../internalRequests/typeDef/inventoryTypes";
+import {
+  usersTypesMutation,
+  usersTypes,
+  usersTypesQueries,
+} from "../auth/typeDef/usersTypes";
+import {
+  inventoryTypes,
+  inventoryTypesMutation,
+  inventoryTypesQuery,
+} from "../internalRequests/typeDef/inventoryTypes";
 
 const typeDefs = `#graphql   
 
@@ -13,6 +21,7 @@ const typeDefs = `#graphql
 
   type Mutation {
     ${usersTypesMutation}
+    ${inventoryTypesMutation}
   }
 `;
 
