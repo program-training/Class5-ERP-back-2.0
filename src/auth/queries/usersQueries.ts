@@ -5,6 +5,6 @@ export const usersQueries = {
     getUser,
 };
 
-export const userAdd = {
+export const usersMutation = {
     addUser,
 }

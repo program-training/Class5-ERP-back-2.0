@@ -26,7 +26,7 @@ const initialData = async () => {
     return "Postgres Database initial successfully";
   } catch (error) {
     console.log(error);
-    return "error has accord during inital data";
+    return "error has accord during initial data";
   }
 };
 

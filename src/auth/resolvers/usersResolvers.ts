@@ -1,13 +1,13 @@
 import { getAllUsersFromMongoDB, insertUsers } from "../dal/mongose";
 
 export const getUsers = async () => {
-  try {
-    const users = await getAllUsersFromMongoDB();
-    return users;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
+    try{
+        const users = await getAllUsersFromMongoDB();
+        return users;
+    }catch (error) {
+        console.log(error);
+        return null;
+    }
 };
 
 interface UserId {
