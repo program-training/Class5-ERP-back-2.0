@@ -1,10 +1,16 @@
-import { addUser, getUser, getUsers } from "../resolvers/usersResolvers";
+import {
+  addUser,
+  getUser,
+  getUsers,
+  loginUser,
+} from "../resolvers/usersResolvers";
 
 export const usersQueries = {
-    getUsers,
-    getUser,
+  getUsers,
+  getUser,
 };
 
 export const usersMutation = {
-    addUser,
-}
+  addUser,
+  loginUser,
+};
