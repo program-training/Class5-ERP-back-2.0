@@ -11,6 +11,6 @@ export const usersTypesQueries = `
     getUser(id:ID!):User!
 `
 
-export const addUserQueries = `
+export const usersTypesMutation = `
     addUser(email: String!, password: String!):User!
 `

@@ -1,13 +1,15 @@
-import { userAdd, usersQueries } from "../auth/queries/usersQueries";
+import { usersMutation, usersQueries } from "../auth/queries/usersQueries";
+import { inventoryQueries } from "../internalRequests/queries/inventoryQueries";
 
 
 const resolvers = {
   Query: {
       ...usersQueries,
+      ...inventoryQueries,
   },
 
   Mutation:{
-    ...userAdd,
+    ...usersMutation,
   }
 }
   
