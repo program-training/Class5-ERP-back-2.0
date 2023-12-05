@@ -4,6 +4,21 @@ export const usersTypes = `
         email: String!
         password: String!
     }
+
+    type ResData {
+        token: String!
+        user: User!
+    }
+
+    type LoginPayload {
+        message: String!
+        resData: ResData!   
+    }
+
+    input LoginInput {
+        email: String!
+        password: String!
+    }
 `;
 
 export const usersTypesQueries = `
@@ -13,4 +28,5 @@ export const usersTypesQueries = `
 
 export const usersTypesMutation = `
     addUser(email: String!, password: String!):User!
+    loginUser(input: LoginInput!):LoginPayload
 `
