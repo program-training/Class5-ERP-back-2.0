@@ -6,6 +6,6 @@ export const getProducts = async () => {
         return products;
     } catch (error) {
         console.log(error);
-        return null;
+        return error;
     }
 }
