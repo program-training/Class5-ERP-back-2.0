@@ -1,6 +1,6 @@
-import { getAllUsersFromMongoDB, insertUsers } from "../dal/mongose";
+import { getAllUsersFromMongoDB } from "../dal/mongose";
 import userValidation from "../model/joi/userValidertion";
-import { login } from "../service/authService";
+import { login, register } from "../service/authService";
 
 export const getUsers = async () => {
     try{
@@ -27,17 +27,18 @@ export const getUser = async (_: any, { id }: UserId) => {
   }
 };
 
-interface UserAdd {
-  email: string;
-  password: string;
-}
-export const addUser = async (_: any, { email, password }: UserAdd) => {
+
+export const registerUser = async (_: any, args:any) => {
   try {
-    const newUser = insertUsers({ email, password });
+    const {email, password} = args.input
+    const { error } = userValidation({ email, password });
+    if (error?.details[0].message) throw new Error(error?.details[0].message);
+
+    const newUser = register({ email, password });
     return newUser;
   } catch (error) {
     console.log(error);
-    return null;
+    return error;
   }
 };
 
@@ -52,6 +53,6 @@ export const loginUser = async (_:any, args:any) => {
     return token;
   } catch (error) {
     console.log(error);
-    return null;
+    return error;
   }
 }

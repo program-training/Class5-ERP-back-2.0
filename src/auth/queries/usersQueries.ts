@@ -1,5 +1,5 @@
 import {
-  addUser,
+  registerUser,
   getUser,
   getUsers,
   loginUser,
@@ -11,6 +11,6 @@ export const usersQueries = {
 };
 
 export const usersMutation = {
-  addUser,
+  registerUser,
   loginUser,
 };
