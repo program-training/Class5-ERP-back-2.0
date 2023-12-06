@@ -114,6 +114,7 @@ export const getQuantityLogsById = async (productId: string | number) => {
       throw new ServerError(404, "Id must be a number");
 
     const productLogs = await getProductLogsByIdFromDb(productId);
+    
     return productLogs;
   } catch (error) {
     console.log(error);
