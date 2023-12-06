@@ -3,11 +3,13 @@ import {
   inventoryMutation,
   inventoryQueries,
 } from "../internalRequests/queries/inventoryQueries";
+import { statisticQueries } from "../internalRequests/queries/statisticQueries";
 
 const resolvers = {
   Query: {
     ...usersQueries,
     ...inventoryQueries,
+    ...statisticQueries,
   },
 
   Mutation: {

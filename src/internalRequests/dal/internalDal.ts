@@ -1,5 +1,7 @@
 import { client } from "../../dbAccess/postgresConnection";
+import ServerError from "../../utils/serverErrorClass";
 import { insertQGenerator, updateQGenerator } from "../helpers/queryGenerators";
+import { ProductsLogsInterface } from "../interfaces/productLogsInterface";
 import { productEntriesType } from "../types/productEntriesType";
 import queries from "../utils/queries";
 
@@ -89,16 +91,24 @@ export const sendUpdateQuantityQuery = async (id: string, quantity: number) => {
   }
 };
 
-export const getInventoryStatisticsByID = async (id: string) => {
+
+
+export const getProductLogsByIdFromDb =async (productId:string | number) => {
   try {
-    const query = `
-    SELECT (action, quantity_changed, current_quantity, changed_on) 
-    FROM quantity_logs
-    WHERE product_id = ${id}
-    `
-    const data = await client.query(query)
-    return data.rows[0]
+      if(Number.isNaN(+productId)) throw new ServerError(404, 'Id must be a number');
+      const query = `
+      SELECT * FROM quantity_logs
+      WHERE product_id = ${productId};
+      `;
+
+      await client.query('BEGIN');
+      const productLogs = await client.query(query);
+      await client.query('COMMIT');
+
+      return productLogs.rows as ProductsLogsInterface[];
   } catch (error) {
-    return Promise.reject
+      console.log(error);
+      return Promise.reject(error);
   }
+  
 }
