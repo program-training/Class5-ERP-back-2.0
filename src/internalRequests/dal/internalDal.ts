@@ -88,3 +88,17 @@ export const sendUpdateQuantityQuery = async (id: string, quantity: number) => {
     return Promise.reject(error);
   }
 };
+
+export const getInventoryStatisticsByID = async (id: string) => {
+  try {
+    const query = `
+    SELECT (action, quantity_changed, current_quantity, changed_on) 
+    FROM quantity_logs
+    WHERE product_id = ${id}
+    `
+    const data = await client.query(query)
+    return data.rows[0]
+  } catch (error) {
+    return Promise.reject
+  }
+}
