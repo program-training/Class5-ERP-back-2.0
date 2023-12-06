@@ -97,7 +97,13 @@ export const getProductLogsByIdFromDb =async (productId:string | number) => {
   try {
       if(Number.isNaN(+productId)) throw new ServerError(404, 'Id must be a number');
       const query = `
-      SELECT * FROM quantity_logs
+      SELECT 
+        product_id,
+        action,
+        quantity_changed,
+        current_quantity,
+        to_char(changed_on, 'MM/DD/YYYY HH24:MI:SS') as changed_on 
+      FROM quantity_logs
       WHERE product_id = ${productId};
       `;
 
