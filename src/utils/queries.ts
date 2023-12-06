@@ -20,6 +20,42 @@ export const addTableQuery = `CREATE TABLE products (
     CHECK (quantity >= 0)
 );`;
 
+export const addLogsTable = `CREATE TABLE quantity_logs (
+  id SERIAL PRIMARY KEY,
+  product_id INT NOT NULL,
+  action VARCHAR(40) NOT NULL,
+  quantity_changed INT NOT NULL,
+  current_quantity INT NOT NULL,
+  changed_on TIMESTAMP(6) NOT NULL
+);`
+
+export const addTrigger = `
+CREATE OR REPLACE FUNCTION log_quantity_changes()
+  RETURNS TRIGGER 
+  LANGUAGE PLPGSQL
+  AS
+  $body$
+    BEGIN
+    IF NEW.quantity < OLD.quantity THEN
+      INSERT INTO quantity_logs(product_id, action, quantity_changed, current_quantity, changed_on)
+      VALUES(OLD.id, 'subtract',(OLD.quantity - NEW.quantity), NEW.quantity, now());
+    ELSEIF NEW.quantity > OLD.quantity THEN
+      INSERT INTO quantity_logs(product_id, action, quantity_changed, current_quantity, changed_on)
+      VALUES(OLD.id, 'add', (NEW.quantity - OLD.quantity), NEW.quantity, now());
+    END IF;
+    RETURN NEW;
+    END;
+  $body$
+`;
+
+export const activateTrigger = `
+CREATE TRIGGER log_quantity_changes
+  BEFORE UPDATE
+  ON products
+  FOR EACH ROW
+  EXECUTE PROCEDURE log_quantity_changes();
+`;
+
 export const addDataToTableQuery = `INSERT INTO products (name, "salePrice", quantity, description, category, "discountPercentage", "imageUrl", "imageAlt", "isForSale", "costPrice", supplier)
 VALUES
   ('Blue T-Shirt', 19.99, 50, 'Cotton short sleeve t-shirt', 'Apparel', 0, 'https://cdn.discordapp.com/attachments/1061944547246088242/1175870410601009272/meir_asulin_Cotton_short_sleeve_t-shirt_blue_71fa9687-e15c-4961-ba15-eac5122b3c51.png', 'Blue t-shirt', true, 15.00, 'T-Shirts Inc.'),
