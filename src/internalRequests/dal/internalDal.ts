@@ -51,8 +51,8 @@ export const sendUpdateProductQuery = async (
 export const sendDeleteProductQuery = async (id: string) => {
   try {
     const deleting = await client.query(
-      queries.deleteProductByIdQ + id + "RETURNING *"
-    );
+      queries.deleteProductByIdQ + id + " RETURNING *"
+    );    
     return deleting.rows;
   } catch (error) {
     return Promise.reject(error);

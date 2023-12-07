@@ -1,10 +1,10 @@
-export const inventoryTypes = `
+export const inventoryTypes = `#graphql
     type Product {
         id: ID
         name: String
         salePrice: Float
-        quantity : Int
-        description : String
+        quantity: Int
+        description: String
         category: String
         discountPercentage: Int
         imageUrl: String
@@ -19,8 +19,8 @@ export const inventoryTypes = `
         id: ID
         name: String
         salePrice: Float
-        quantity : Int
-        description : String
+        quantity: Int
+        description: String
         category: String
         discountPercentage: Int
         imageUrl: String
@@ -29,6 +29,15 @@ export const inventoryTypes = `
         costPrice: Float
         supplier: String
         createdBy: String
+    }
+
+    input updateProductInput {
+        id: String
+        product: addProductInput
+    }
+
+    input deleteProductInput {
+        id: String
     }
 `;
 
@@ -39,4 +48,6 @@ export const inventoryTypesQuery = `
 
 export const inventoryTypesMutation = `
     addProduct(input: addProductInput!):Product!
+    updateProduct(input: updateProductInput):Product!
+    deleteProduct(input: deleteProductInput):Product!
 `;
