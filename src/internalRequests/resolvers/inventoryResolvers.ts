@@ -41,7 +41,7 @@ export const addProduct = async (_:any, args:any, context:any) => {
 
 export const updateProduct = async (_:any, args:any, context:any) => {
   try {
-    const {product, id} = args;
+    const { input: { product, id }} = args;
     const updatedProduct = await updateProductService(id, product)
     return updatedProduct[0]
   } catch (error) {
