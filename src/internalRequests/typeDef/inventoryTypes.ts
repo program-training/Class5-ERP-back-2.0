@@ -43,6 +43,7 @@ export const inventoryTypes = `#graphql
 export const inventoryTypesQuery = `
     getProducts:[Product!]!
     getProduct(id: ID!):Product!
+    getMyProducts:[Product]
 `;
 
 export const inventoryTypesMutation = `
