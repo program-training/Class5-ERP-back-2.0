@@ -16,7 +16,6 @@ export const inventoryTypes = `#graphql
     }
 
     input addProductInput {
-        id: ID
         name: String
         salePrice: Float
         quantity: Int

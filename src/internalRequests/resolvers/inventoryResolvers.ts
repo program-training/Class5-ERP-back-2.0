@@ -34,9 +34,9 @@ export const getProduct = async (_: any, args: any, {token}: any) => {
 
 export const addProduct = async (_: any, args: any, context: any) => {
   try {
-    graphQlAuthCheck(context.token);
-    const { product } = args;
-    const token = context.req.headers.authorization;
+    graphQlAuthCheck(context.token);    
+    const { input: product } = args;
+    const token = context.token;
     const newProduct = await addNewProductService(product, token);
     return newProduct;
   } catch (error) {
