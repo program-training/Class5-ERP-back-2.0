@@ -1,12 +1,14 @@
 export const statisticsTypes = `
     type ProductStatistics {
+        product_id: String
         action: String
         quantity_changed: Int
         current_quantity: Int
-        changed_on: 
+        changed_on: String
     }
+    
 `;
 
-export const inventoryTypesQuery = `
-    getProductStatistic(id: ID!):ProductStatistics!
+export const statisticTypesQuery = `
+    getProductStatistics(id: String!):[ProductStatistics]
 `
