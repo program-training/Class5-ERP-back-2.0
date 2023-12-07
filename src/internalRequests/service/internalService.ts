@@ -66,7 +66,7 @@ export const updateProductService = async (
 };
 
 export const deleteProductByIdService = async (id: string) => {
-  try {
+  try {    
     const deleting = await sendDeleteProductQuery(id);
     if (!deleting.length) throw new Error("product not found");
     return deleting;

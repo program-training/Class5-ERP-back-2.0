@@ -1,7 +1,9 @@
 import {
   addProduct,
+  deleteProduct,
   getProduct,
   getProducts,
+  updateProduct,
 } from "../resolvers/inventoryResolvers";
 
 export const inventoryQueries = {
@@ -11,4 +13,6 @@ export const inventoryQueries = {
 
 export const inventoryMutation = {
     addProduct,
+    updateProduct,
+    deleteProduct,
 }
