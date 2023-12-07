@@ -1,6 +1,7 @@
 import {
   addProduct,
   deleteProduct,
+  getMyProducts,
   getProduct,
   getProducts,
   updateProduct,
@@ -9,6 +10,7 @@ import {
 export const inventoryQueries = {
   getProducts,
   getProduct,
+  getMyProducts,
 };
 
 export const inventoryMutation = {

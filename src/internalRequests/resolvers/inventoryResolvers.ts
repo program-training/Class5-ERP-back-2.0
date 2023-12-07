@@ -1,11 +1,10 @@
-import { GraphQLError } from "graphql";
-import { verifyToken } from "../../auth/model/jwt/jwt";
 import {
   getProductByIdService,
   getAllProductsService,
   addNewProductService,
   updateProductService,
   deleteProductByIdService,
+  getMyProductsService,
 } from "../service/internalService";
 import { graphQlAuthCheck } from "../../utils/grapqlAuthCheck";
 
@@ -70,3 +69,14 @@ export const deleteProduct = async (_: any, args: any, {token}:any) => {
     return error;
   }
 };
+
+export const getMyProducts =async (_parent:any, _args:any, {token}:any) => {
+    try {
+        graphQlAuthCheck(token);
+        const myProducts = getMyProductsService(token);
+        return myProducts;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
