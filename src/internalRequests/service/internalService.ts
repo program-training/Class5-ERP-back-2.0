@@ -59,6 +59,8 @@ export const updateProductService = async (
   update: Omit<AdminProductInterface, "id">
 ) => {
   try {
+    console.log('updating. pr:', update);
+    
     const entries = getArrOfObjEntries(update);
     const updatedProduct = await sendUpdateProductQuery(id, entries);
     return updatedProduct;
