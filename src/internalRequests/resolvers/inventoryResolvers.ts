@@ -1,5 +1,3 @@
-import { GraphQLError } from "graphql";
-import { verifyToken } from "../../auth/model/jwt/jwt";
 import {
   getProductByIdService,
   getAllProductsService,
